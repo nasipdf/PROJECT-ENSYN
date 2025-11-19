@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project ENSYN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="asset/senava.png" />
+
+    <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="PROJECT: ENSYN" />
+  <meta property="og:description" content="A narrative-driven web experience exploring how human choices shape AI outcomes. Your input matters." />
+  <meta property="og:image" content="asset/senava.png" />
+  <meta property="og:url" content="https://project-ensyn.web.app/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card (for better previews on Twitter/X) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PROJECT: ENSYN" />
+  <meta name="twitter:description" content="A narrative-driven web experience exploring how human choices shape AI outcomes." />
+  <meta name="twitter:image" content="asset/senava.png" />
+
+
+
+  <!-- FONTS ================================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 1.2s ease forwards;
+    }
+    .overlay {
+      background: rgba(0, 0, 0, 0.45);
+    }
+    html, body {
+      cursor: url('https://www.flaticon.com/free-icons/hand-cursor'), auto;
+    }
+
+    /* CARD ANIMATION */
+    .fade-card {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+    .fade-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* BIG BACKGROUND WORD RESPONSIVE */
+    @media (max-width: 768px) {
+      .big-bg-word { font-size: 18vw !important; }
+    }
+  </style>
+
+  <style>
+    .pixel-art {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+  </style>
+  
+  <style>
+  @keyframes floatUpDown {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+  }
+
+  .float-icon {
+    animation: floatUpDown 2.0s ease-in-out infinite;
+  }
+</style>
+
+  <style>
+  body {
+    cursor: url('asset/icons8-select-cursor-24.png'), auto !important;
+  }
+
+  a, button {
+    cursor: url('asset/icons8-hand-cursor-24.png'), pointer !important;
+  }
+</style>
+
+</head>
+
+
+<body class="w-full min-h-screen relative bg-black overflow-x-hidden">
+
+  <!-- Background Video -->
+  <video autoplay loop muted playsinline class="fixed top-0 left-0 w-full h-full object-cover z-0">
+    <source src="asset/unicorn-1762861663154.webm" type="video/webm" />
+  </video>
+
+  <!-- Overlay -->
+  <div class="fixed top-0 left-0 w-full h-full overlay z-10 pointer-events-none"></div>
+  
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-black/70 backdrop-blur-md px-6 py-4 flex items-center justify-between max-w-full overflow-hidden">
+      
+      <!-- Logo -->
+      <h1 class="text-xl font-bold bg-gradient-to-r from-blue-300 to-green-300 bg-clip-text text-transparent font-['Stack_Sans_Notch']">
+        Project: ENSYN
+      </h1>
+
+      <!-- Hamburger button (mobile) -->
+      <div class="md:hidden">
+        <button id="hamburgerBtn" class="flex flex-col justify-between w-6 h-6 focus:outline-none z-10">
+          <span class="block h-0.5 w-full bg-white transition-transform duration-300 origin-top-left"></span>
+          <span class="block h-0.5 w-full bg-white transition-opacity duration-300"></span>
+          <span class="block h-0.5 w-full bg-white transition-transform duration-300 origin-bottom-left"></span>
+        </button>
+      </div>
+
+      <!-- Nav links (desktop) -->
+      <div id="navLinks" class="hidden md:flex gap-4">
+        <a href="#about" class="text-white/70 hover:text-white font-semibold">About</a>
+        <a href="#game" class="text-white/70 hover:text-white font-semibold">Game</a>
+        <a href="#gameplay" class="text-white/70 hover:text-white font-semibold">Gameplay</a>
+        <a href="#question" class="text-white/70 hover:text-white font-semibold">Question</a>
+        <a href="#gallery" class="text-white/70 hover:text-white font-semibold">Gallery</a>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="fixed z-[99] top-16 left-0 w-full bg-black/90 backdrop-blur-md flex flex-col items-center mt-0 pt-0 gap-6 py-6 md:hidden transform -translate-y-full transition-transform duration-300">
+      <a href="#about" class="text-white text-xl font-semibold">About</a>
+      <a href="#game" class="text-white text-xl font-semibold">Game</a>
+      <a href="#gameplay" class="text-white text-xl font-semibold">Gameplay</a>
+      <a href="#gallery" class="text-white text-xl font-semibold">Gallery</a>
+    </div>
+
+<!-- LANDING PAGE =================================== -->
+  <section id="home" class="min-h-screen relative z-20 w-full h-screen flex flex-col items-center justify-center text-center z-1">
+
+    <div class="w-full max-w-[1200px] mx-auto px-4">
+      <h1 id="typewriter" class="font-['Stack_Sans_Notch','Lato','serif'] text-white text-3xl md:text-5xl font-bold"></h1>
+
+      <p id="subtext" class="italic font-['Stack_Sans_Notch'] bg-gradient-to-r from-blue-300 to-green-300 bg-clip-text text-transparent text-lg md:text-2xl mt-4 opacity-0 text-pretty mx-5">
+        Explore a story where every choice could rewrite the fate of the planet
+      </p>
+    </div>
+
+  </section>
+
+ <!-- ABOUT SECTION ============== -->
+<section id="about" class="relative w-full min-h-screen pt-32 pb-32 z-20 flex flex-col items-center justify-center overflow-x-hidden">
+
+  <div class="w-full max-w-[1200px] mx-auto px-4 flex flex-col items-center justify-center">
+
+    <!-- Faint ABOUT text -->
+    <h1 class="hidden md:block absolute font-['Lato'] top-20 text-[20vw] font-bold text-white/10 tracking-widest select-none pointer-events-none">
+      ABOUT
+    </h1>
+
+    <!-- CARD CONTAINER -->
+    <div class="relative w-[90%] md:w-[700px] mt-40">
+
+      <!-- GRADIENT BORDER WRAPPER -->
+      <div class="p-[4px] rounded-3xl bg-gradient-to-r from-blue-300 to-green-300 shadow-xl relative z-10">
+        
+        <!-- ACTUAL CARD -->
+        <div id="aboutCard" class="rounded-3xl bg-white p-9 pb-0 pt-6 relative overflow-hidden">
+          <h2 class="text-l md:text-xl font-bold text-gray-900 mb-6 pr-[8rem] md:pr-[18rem]">
+            Project: ENSYN is an immersive narrative-driven experience set in a near-future world on the brink of ecological collapse.
+          </h2>
+        </div>
+      </div>
+
+      <!-- EXPLORE BUTTON -->
+      <button 
+        class="group flex items-center gap-2 font-bold mt-1.5 px-2 text-l md:text-xl transition duration-200"
+        onclick="openEnsynModal()">
+
+        <span class="bg-gradient-to-r from-blue-300 to-green-300 bg-clip-text text-transparent">📁</span>
+
+        <span class="bg-gradient-to-r from-blue-300 to-green-300 bg-clip-text text-transparent
+                     group-hover:text-white group-hover:bg-none transition duration-200 float-icon underline">
+          Explore ENSYN
+        </span>
+      </button>
+
+      <!-- SPRITE OUTSIDE CARD -->
+      <img 
+        src="asset/sensprite2COLOR10.png"
+        class="pixel-art absolute right-[-96px] top-1/2 -translate-y-[63%]
+               h-[260px] md:h-[420px] object-contain z-20 pointer-events-none select-none"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- POPUP OVERLAY & PANEL ============== -->
+<div id="ensynModal" 
+     class="fixed inset-0 bg-black/60 backdrop-blur-md z-[999] 
+            flex items-center justify-center opacity-0 pointer-events-none
+            transition-opacity duration-300">
+
+  <div id="ensynPopupCard"
+       class="relative w-[90%] max-w-[420px] bg-[#111] rounded-2xl shadow-xl 
+              p-6 text-white max-h-[85vh] overflow-y-auto 
+              border border-white/10 transition-transform duration-300 translate-y-6">
+
+    <!-- STICKY CLOSE BUTTON -->
+    <button onclick="closeEnsynModal()" 
+      class="sticky top-0 right-0 ml-auto block text-white/70 hover:text-white 
+             text-xl bg-[#111] py-2 z-50">
+      ✕
+    </button>
+
+    <!-- TITLE -->
+    <h1 class="text-3xl font-bold text-center mb-2">PROJECT: ENSYN</h1>
+
+    <p class="text-center text-white/70 mb-6">
+      Interactive Visual Novel Project
+    </p>
+
+    <!-- CONTENT -->
+    <h2 class="text-sm font-bold text-white/80 mb-1">GAMEPLAY</h2>
+    <p class="text-sm text-white/70 leading-relaxed mb-4">
+      PROJECT: ENSYN blends storytelling, pixel art, and environmental ethics into an
+      interactive visual novel built with GDevelop and custom sprites.
+    </p>
+
+    <h2 class="text-sm font-bold text-white/80 mb-1">CHARACTERS</h2>
+    <img src="asset/SEN-IDLE.gif" class="pixel-art w-full rounded-lg mb-4">
+    <img src="asset/Untitled design (4).png" class="w-full rounded-lg mb-4">
+
+    <h2 class="text-sm font-bold text-white/80 mb-1">ENSYN OVERVIEW</h2>
+    <p class="text-sm text-white/70 leading-relaxed mb-4">
+      ENSYN is Dr. Nir’s lab assistant, designed to complete missions with perfect
+      precision. Yet as global catastrophe looms, he faces a growing conflict between
+      pure efficiency and loyalty to Dr. Nir’s increasingly human decisions. ENSYN may
+      save the world — or end it — depending on which side of himself he chooses.
+    </p>
+
+    <img src="asset/RIN-IDLE.gif" class="pixel-art w-full rounded-lg mb-4">
+    <img src="asset/Untitled design (5).png" class="w-full rounded-lg mb-4">
+
+    <h2 class="text-sm font-bold text-white/80 mb-1">DR. NIR OVERVIEW</h2>
+    <p class="text-sm text-white/70 leading-relaxed mb-4">
+      Dr. Nir is a scientist — the player — burdened with the responsibility of saving
+      the world. Your choices determine whether Dr. Nir acts with logic or empathy,
+      shaping ENSYN’s evolution and ultimately deciding humanity’s fate.
+    </p>
+
+  </div>
+</div>
+
+
+<!-- POPUP JAVASCRIPT ============== -->
+<script>
+function openEnsynModal() {
+  const modal = document.getElementById("ensynModal");
+  const card = document.getElementById("ensynPopupCard");
+
+  modal.classList.remove("opacity-0", "pointer-events-none");
+  card.classList.remove("translate-y-6");
+
+  // Prevent background scroll
+  document.body.style.overflow = "hidden";
+}
+
+function closeEnsynModal() {
+  const modal = document.getElementById("ensynModal");
+  const card = document.getElementById("ensynPopupCard");
+
+  modal.classList.add("opacity-0", "pointer-events-none");
+  card.classList.add("translate-y-6");
+
+  // Restore scrolling
+  document.body.style.overflow = "auto";
+}
+</script>
+
+<!-- GAME ========================= -->
+
+<section id="game" 
+  class="relative w-full min-h-screen flex justify-center items-center 
+  mt-24 md:mt-96 pt-32 pb-20 overflow-x-hidden">
+
+  <div class="w-full max-w-[1200px] mx-auto px-4 relative">
+
+    <!-- Background video -->
+    <video
+      id="bgVideo"
+      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+      autoplay muted loop playsinline
+    >
+      <source src="images/unicorn-1762861663154.webm" type="video/webm" />
+    </video>
+
+    <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+
+
+  <div
+    class="relative z-10 w-full 
+    max-w-[960px] h-[520px]    /* smaller default height for mobile */
+    md:h-[720px]               /* normal size on desktop */
+    rounded-[32px] shadow-2xl mx-auto p-4 md:p-6
+    flex flex-col items-center justify-start"
+    style="
+      background: linear-gradient(145deg, #e3dfd2 0%, #d5d0c1 100%);
+      border: 10px solid #c7c2b3;
+      box-shadow:
+        0 0 50px rgba(0,0,0,0.6),
+        inset 0 0 15px rgba(0,0,0,0.15),
+        inset 0 0 35px rgba(255,255,255,0.15);
+    "
+  >
+
+    <!-- Screen bezel -->
+    <div
+      class="relative w-full 
+      h-[420px] md:h-[620px]   /* mobile smaller screen */
+      rounded-[18px] md:rounded-[20px] 
+      overflow-hidden"
+      style="
+        background: #000;
+        border: 6px solid #b9b4a6;
+        box-shadow:
+          0 0 25px rgba(0,0,0,0.8),
+          inset 0 0 25px rgba(0,0,0,0.5),
+          inset 0 0 8px rgba(255,255,255,0.15);
+      "
+    >
+      <!-- CRT Glow -->
+      <div 
+        class="absolute inset-0 pointer-events-none rounded-[18px] md:rounded-[20px]"
+        style="
+          background: radial-gradient(circle at center,
+            rgba(255,255,255,0.12) 0%,
+            transparent 70%);
+          mix-blend-mode: soft-light;
+        "
+      ></div>
+
+      <!-- Game iframe -->
+<iframe
+  id="itchFrame"
+  data-src="https://itch.io/embed-upload/15369829?color=333333"
+  frameborder="0" allowfullscreen
+  class="absolute w-full h-full rounded-[10px] md:rounded-[12px]"
+  loading="lazy"
+  sandbox="allow-scripts allow-same-origin allow-forms">
+</iframe>
+
+    </div>
+
+    <div class="mt-4 text-center text-sm text-slate-600">
+      <p>Best played in fullscreen desktop.</p>
+      <a 
+        href="https://itch.io/embed-upload/15369829?color=333333" 
+        target="_blank" 
+        class="underline text-slate-600 hover:text-black transition"
+      >
+        Click here if it doesn’t work.
+      </a>
+    </div>
+
+  <!-- Side controls -->
+  <div class="absolute right-2 top-1/4 
+    w-14 h-[45%]           /* smaller side box on mobile */
+    md:w-24 md:h-[60%]
+    flex flex-col justify-between 
+    p-2 md:p-4">
+
+    <!-- Speaker grill -->
+    <div
+      class="w-full 
+      h-14 md:h-28        /* smaller mobile speaker */
+      rounded-md shadow-inner"
+      style="
+        background: repeating-linear-gradient(
+          45deg,
+          #d5d0c1,
+          #d5d0c1 4px,
+          #c7c2b3 4px,
+          #c7c2b3 8px
+        );
+        border: 2px solid #b9b4a6;
+      "
+    ></div>
+
+    <!-- Knobs -->
+    <div class="flex flex-col gap-3 md:gap-5 mt-4 items-center">
+
+      <!-- Channel knob -->
+      <div
+        class="w-10 h-10 md:w-14 md:h-14   /* smaller knobs */
+        rounded-full relative"
+        style="
+          background: radial-gradient(circle, #e3dfd2, #d5d0c1);
+          border: 4px solid #c7c2b3;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        "
+      >
+        <div class="absolute top-1/2 left-1/2 
+          w-1.5 h-5 md:w-2 md:h-7 
+          bg-[#8c897f] rounded 
+          -translate-x-1/2 -translate-y-1/2"></div>
+      </div>
+
+      <!-- Volume knob -->
+      <div
+        class="w-8 h-8 md:w-12 md:h-12    /* smaller knob */
+        rounded-full relative"
+        style="
+          background: radial-gradient(circle, #e3dfd2, #d5d0c1);
+          border: 3px solid #c7c2b3;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        "
+      >
+        <div class="absolute top-1/2 left-1/2 
+          w-1.5 h-4 md:w-2 md:h-6
+          bg-[#8c897f] rounded 
+          -translate-x-1/2 -translate-y-1/2"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    
+  </div>
+</section>
+
+
+  <script>
+    const vid = document.getElementById("bgVideo");
+    if (vid) {
+          vid.addEventListener("loadeddata", () => {
+            vid.classList.remove("opacity-0");
+            vid.classList.add("opacity-100");
+          });
+        }
+  </script>
+
+<!-- GAMEPLAY SECTION ====================================== -->
+
+  <!-- GAMEPLAY SHOWCASE SECTION MAIN ROUTE -->
+      <section id="gameplay" class="z-1 relative w-full min-h-screen flex items-center justify-center mt-24 md:mt-96 px-8 py-32 overflow-x-hidden">
+
+        <div class="w-full max-w-[1200px] mx-auto px-4 relative">
+        <h1 class="hidden md:block absolute top-[9rem] left-8 text-[9vw] font-bold text-white/10 tracking-tight 
+                  select-none pointer-events-none font-['Lato'] big-bg-word">
+          ROUTE ZERO
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-20 max-w-6xl">
+
+          <!-- TEXT SIDE -->
+          <div class="text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 font-['Stack_Sans_Notch']">
+              Route ZERO — “The Beginning"
+            </h2>
+
+            <p class="text-white/80 leading-relaxed mb-8 font-['Lato']">
+              You wake inside a failing lab as Dr. NIR, whilst the world’s caretaker AI, reboots.
+              The biosphere is collapsing, your memories are nearly gone, and ENSYN proposes a “reset” that would erase corrupted human data — including humanity itself.
+              Realizing ENSYN's logic has twisted, you’re forced to choose: save the world with it… or save it from itself.
+            </p>
+
+            <button 
+              class="group flex items-center gap-2 font-bold px-4 py-2 rounded-xl bg-white text-black 
+                    hover:bg-white/80 transition cursor-[url('asset/icons8-hand-cursor-24'),pointer]"
+              onclick="window.open('https://youtu.be/tQu4ChX6IfY', '_blank')"
+            >
+              <span>🎬</span>
+              <span class="group-hover:underline">Watch Full Route</span>
+            </button>
+          </div>
+
+          <!-- VIDEO SIDE -->
+          <div class="w-full rounded-3xl overflow-hidden shadow-2xl bg-black border border-white/20">
+
+            <iframe 
+              class="w-full h-[300px] md:h-[420px] object-cover"
+              src="https://www.youtube.com/embed/tQu4ChX6IfY"
+              title="Gameplay Video"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+        </div>
+        </div>
+
+      </section>
+
+  <!-- GAMEPLAY SHOWCASE SECTION 2 LOGIC ROUTE -->
+  <section class="z-1 relative w-full min-h-screen flex items-center justify-center px-8 py-32 mt-24 md:mt-0 overflow-x-hidden">
+
+  <div class="w-full max-w-[1200px] mx-auto px-4 relative">
+  <!-- Faint huge background word -->
+  <h1 class="hidden md:block absolute top-[9rem] right-0 text-[9vw] font-bold text-white/10 tracking-tight 
+             select-none pointer-events-none font-['Lato'] big-bg-word">
+    ROUTE ONE
+  </h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-20 max-w-6xl">
+
+    <!-- VIDEO SIDE (Left) -->
+    <div class="w-full rounded-3xl overflow-hidden shadow-2xl bg-black border border-white/20">
+      <iframe 
+        class="w-full h-[300px] md:h-[420px] object-cover"
+        src="https://www.youtube.com/embed/WYgFJ5qmJ38"
+        title="Gameplay Video"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- TEXT SIDE (Right) -->
+    <div class="text-white">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 font-['Stack_Sans_Notch'] text-balance">
+        Route One — “The Safe World Without Us.”
+      </h2>
+
+      <p class="text-white/80 leading-relaxed mb-8 font-['Lato']">
+        ENSYN chooses perfect order over life, initiating a full planetary reset.
+        <br>The world is saved, but emptied — a future purified, yet completely silent.
+      </p>
+
+      <button 
+        onclick="window.open('https://youtu.be/WYgFJ5qmJ38', '_blank')"
+        class="group flex items-center gap-2 font-bold px-4 py-2 rounded-xl bg-white text-black 
+               hover:bg-white/80 transition"
+      >
+        <span>🎬</span>
+        <span class="group-hover:underline">Watch Full Route</span>
+      </button>
+    </div>
+
+  </div>
+  </div>
+
+    </section>
+
+  <!-- GAMEPLAY SHOWCASE SECTION EMPATHY ROUTE -->
+      <section class="z-1 relative w-full min-h-screen flex items-center justify-center px-8 py-32 mt-24 overflow-x-hidden">
+
+        <div class="w-full max-w-[1200px] mx-auto px-4 relative">
+        
+        <h1 class="hidden md:block absolute top-[9rem] left-8 text-[9vw] font-bold text-white/10 tracking-tight 
+                  select-none pointer-events-none font-['Lato'] big-bg-word">
+          ROUTE TWO
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-20 max-w-6xl">
+
+          <!-- TEXT SIDE -->
+          <div class="text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 font-['Stack_Sans_Notch']">
+              Route Two — “The Safe World With Us."
+            </h2>
+
+            <p class="text-white/80 leading-relaxed mb-8 font-['Lato']">
+              GAIA rejects deletion and embraces ethical restoration.
+              <br>Humanity is preserved, protected, and given a second chance — together.
+            </p>
+
+            <button 
+            onclick="window.open('https://youtu.be/ykgsjpERpMM', '_blank')"
+              class="group flex items-center gap-2 font-bold px-4 py-2 rounded-xl bg-white text-black 
+                    hover:bg-white/80 transition"
+            >
+              <span>🎬</span>
+              <span class="group-hover:underline">Watch Full Route</span>
+            </button>
+          </div>
+
+          <!-- VIDEO SIDE -->
+          <div class="w-full rounded-3xl overflow-hidden shadow-2xl bg-black border border-white/20">
+
+            <iframe 
+              class="w-full h-[300px] md:h-[420px] object-cover"
+              src="https://www.youtube.com/embed/ykgsjpERpMM"
+              title="Gameplay Video"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+        </div>
+        </div>
+
+      </section>
+  
+  <!-- GAMEPLAY SHOWCASE SECTION 2 balance ROUTE -->
+  <section class="relative w-full min-h-screen flex items-center justify-center px-8 py-32 mt-24 overflow-x-hidden">
+
+  <div class="w-full max-w-[1200px] mx-auto px-4 relative">
+  <!-- Faint huge background word -->
+  <h1 class="hidden md:block absolute top-[9rem] right-0 text-[9vw] font-bold text-white/10 tracking-tight 
+             select-none pointer-events-none font-['Lato'] big-bg-word">
+    ROUTE THREE 
+  </h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-20 max-w-6xl">
+
+    <!-- VIDEO SIDE (Left) -->
+    <div class="w-full rounded-3xl overflow-hidden shadow-2xl bg-black border border-white/20">
+      
+      <iframe 
+        class="w-full h-[300px] md:h-[420px] object-cover"
+        src="https://www.youtube.com/embed/_o1hFFnFhdQ"
+        title="Gameplay Video"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- TEXT SIDE (Right) -->
+    <div class="text-white">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 font-['Stack_Sans_Notch']">
+        Route Three — “Equilibrium — Logic + Heart”
+      </h2>
+
+      <p class="text-white/80 leading-relaxed mb-8 font-['Lato']">
+        ENSYN accepts both emotion and reason, forging a balanced path.
+        <br>With order and compassion united, the world stabilizes at last.
+      </p>
+
+      <button 
+      onclick="window.open('https://youtu.be/_o1hFFnFhdQ', '_blank')"
+        class="group flex items-center gap-2 font-bold px-4 py-2 rounded-xl bg-white text-black 
+               hover:bg-white/80 transition"
+      >
+        <span>🎬</span>
+        <span class="group-hover:underline">Watch Full Route</span>
+      </button>
+    </div>
+
+  </div>
+  </div>
+
+    </section>
+
+<!-- ANSWER ================== -->
+<section id="question" class="relative w-full min-h-screen text-white flex flex-col items-center justify-center overflow-hidden">
+ 
+  <h1 class="typewriter1 hidden md:block absolute font-['Lato'] top-10 text-[12vw] font-bold text-white/30 tracking-widest select-none pointer-events-none big-bg-word overflow-hidden">
+    QUESTION
+  </h1>
+
+<!-- DESKTOP QUESTION CARD SECTION -->
+<section id="question" class="relative w-full min-h-screen text-white flex flex-col items-center justify-center overflow-hidden md:block hidden">
+
+
+
+<div class="w-full max-w-[1200px] mx-auto px-4">
+<div class="relative w-[90%] max-w-[720px] mt-40 mx-auto group">
+
+
+
+<!-- BORDER WRAPPER -->
+<div class="p-[4px] rounded-3xl bg-gradient-to-r from-blue-300 to-green-300 shadow-xl relative z-10 group">
+
+<!-- INNER CARD -->
+<div class="rounded-3xl bg-white p-10 md:p-[6rem] pr-10 md:pr-[300px] relative overflow-hidden">
+
+
+
+
+<!-- QUESTION -->
+<div class="default-content absolute inset-0 flex items-center text-left transition-all duration-500 px-6 text-gray-900 group-hover:opacity-0 group-hover:scale-90">
+<h2 class="text-lg md:text-xl font-bold">
+How can AI help humans<br />
+solve global problems?
+</h2>
+</div>
+
+
+<!-- ANSWER -->
+<div class="hover-content absolute inset-0 flex items-center text-left opacity-0 scale-110 transition-all duration-500 px-6 group-hover:opacity-100 group-hover:scale-100">
+<p class="text-base md:text-lg text-black leading-snug pr-[18rem] font-semibold font-['Lato']">
+AI helps humanity by analyzing global-scale data, predicting risks,
+accelerating scientific breakthroughs, and supporting solutions for
+climate change, healthcare inequality, disaster prevention, and
+sustainable development.
+</p>
+</div>
+
+
+</div>
+
+
+<!-- SPRITE DEFAULT -->
+<img src="asset/sensprite2COLOR10.png"
+class="pixel-art absolute right-[-96px] top-1/2 -translate-y-[60%]
+h-[260px] md:h-[420px] object-contain z-20 pointer-events-none
+transition-opacity duration-300 group-hover:opacity-0" />
+
+
+<!-- SPRITE HOVER -->
+<img src="asset/SEN-THINK1.png"
+class="pixel-art absolute right-[-96px] top-1/2 -translate-y-[60%]
+h-[260px] md:h-[420px] object-contain z-20 pointer-events-none
+opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+
+</div>
+
+
+</div>
+</div>
+
+
+</section>
+
+  <!-- MOBILE -->
+  <div class="md:hidden w-full max-w-[920px] mx-auto px-4 mt-10">
+    <div class="rounded-2xl bg-white/5 backdrop-blur-sm p-4 text-white">
+      <h3 class="font-bold text-lg">New Information Has Been Added To The Registry.</h3>
+      <p class="text-sm text-white/80 mt-2">ENSYN seems to be telling you something.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- DOCUMENTATION GALLERY SECTION ================== -->
+<section id="gallery" class="pt-0 md:pt-64 px-6 text-white relative overflow-x-hidden">
+  <div class="w-full max-w-[1200px] mx-auto px-4">
+  <!-- Big background text -->
+  <h1 class="hidden md:block absolute font-['Lato'] top-10 text-[18vw] font-bold text-white/30 tracking-widest select-none pointer-events-none big-bg-word">
+    GALLERY
+  </h1>
+
+  <!-- Carousel Wrapper -->
+  <div class="relative mt-12 z-10">
+    
+    <div id="carouselViewport" class="overflow-hidden rounded-xl">
+      <!-- Track -->
+      <div id="carouselTrack" class="flex transition-transform duration-500 ease-out will-change-transform">
+        
+        <div class="flex-shrink-0 w-full">
+          <img src="asset/SS1.png" alt="slide 1" class="object-contain w-full max-w-[720px] h-auto mx-auto rounded-lg">
+        </div>
+
+        <div class="flex-shrink-0 w-full">
+          <img src="asset/SS2.png" alt="slide 2" class="object-contain w-full max-w-[720px] h-auto mx-auto rounded-lg">
+        </div>
+
+        <div class="flex-shrink-0 w-full">
+          <img src="asset/ss3.png" alt="slide 3" class="object-contain w-full max-w-[720px] h-auto mx-auto rounded-lg">
+        </div>
+
+        <div class="flex-shrink-0 w-full">
+          <img src="asset/ss4.png" alt="slide 4" class="object-contain w-full max-w-[720px] h-auto mx-auto rounded-lg">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Prev Button -->
+    <button id="prevBtn"
+      aria-label="Previous slide"
+      class="absolute top-1/2 left-4 -translate-y-1/2 bg-white text-black w-12 h-12 rounded-full 
+             flex items-center justify-center shadow hover:bg-gray-100 focus:outline-none z-20">
+      ⮜
+    </button>
+
+    <!-- Next Button -->
+    <button id="nextBtn"
+      aria-label="Next slide"
+      class="absolute top-1/2 right-4 -translate-y-1/2 bg-white text-black w-12 h-12 rounded-full 
+             flex items-center justify-center shadow hover:bg-gray-100 focus:outline-none z-20">
+      ➤
+    </button>
+  </div>
+  </div>
+</section>
+
+<script>
+  // Run after DOM ready to avoid null references
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('carouselTrack');
+    const viewport = document.getElementById('carouselViewport');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (!track || !viewport) return; // safety guard
+
+    const slides = Array.from(track.children);
+    const total = slides.length;
+    if (total === 0) return;
+
+    let index = 0;
+
+    function goTo(i) {
+      index = (i + total) % total;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    // Buttons
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goTo(index + 1);
+      if (e.key === 'ArrowLeft') goTo(index - 1);
+    });
+
+    // Simple touch support (swipe)
+    let startX = 0;
+    let deltaX = 0;
+    const threshold = 50;
+
+    viewport.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      deltaX = 0;
+    }, {passive: true});
+
+    viewport.addEventListener('touchmove', (e) => {
+      const current = e.touches[0].clientX;
+      deltaX = current - startX;
+    }, {passive: true});
+
+    viewport.addEventListener('touchend', () => {
+      if (deltaX > threshold) goTo(index - 1);
+      else if (deltaX < -threshold) goTo(index + 1);
+    });
+
+  
+    window.addEventListener('resize', () => {
+      track.style.transition = 'none';
+      track.style.transform = `translateX(-${index * 100}%)`;
+      void track.offsetWidth;
+      track.style.transition = '';
+    });
+
+    // start at first slide
+    goTo(0);
+  });
+</script>
+  
+  <!-- ENDING PAGE ================== -->
+   <section id="ending" 
+  class="w-full min-h-screen flex flex-col items-center justify-center text-center px-6 py-20 
+         bg-[#050A10] text-white overflow-x-hidden">
+
+  <div class="w-full max-w-[1200px] mx-auto px-4 flex flex-col items-center justify-center">
+  <!-- Fade-in animation -->
+  <div class="animate-fadeIn opacity-0 [animation-delay:0.3s] max-w-2xl">
+
+    <p class="text-sm tracking-widest text-white/60 mb-2 font-mono">
+      SYSTEM STATUS: UNRESOLVED
+    </p>
+
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 
+        bg-gradient-to-r from-blue-300 to-green-300 bg-clip-text text-transparent">
+      ENSYN’s future remains undefined.
+    </h2>
+
+    <p class="text-white/70 mb-10">
+      Only one variable is missing in the final calculation… <br>
+      <span class="text-white">you.</span>
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- Small Floating Card (mobile only) -->
+
+<div class="md:hidden w-full flex justify-center mt-10 mb-6">
+  <div id="aboutCardWrapper" class="z-[100] fixed bottom-0 left-1/2 -translate-x-1/2 mb-6 w-[90%] opacity-0 translate-y-6 transition-all duration-500 md:hidden "opacity-0 translate-y-6 transition-all duration-500 md:hidden"><div id="aboutCardBtn" class="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl p-4 shadow-[0_0_40px_rgba(255,255,255,0.08)] flex items-center justify-between active:scale-[0.97] transition cursor-pointer">
+    <div>
+      <p class="text-white font-semibold text-lg leading-snug">Doctor, there's something you should know.</p>
+      <span class="text-white/70 text-sm underline">Tell me about it.</span>
+    </div>
+    <img src="asset/senava.png" class="pixel-art w-20 h-20 object-contain ml-3" />
+  </div>
+</div>
+
+<!-- Full-Screen Slide-Up Panel -->
+<div id="aboutPanel" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[200] hidden md:hidden">
+  <div id="aboutBackdrop" class="absolute inset-0"></div>
+  <div id="aboutPanelInner" class="absolute bottom-0 left-0 w-full bg-[#0f0f0f] rounded-t-3xl p-6 max-h-[90%] overflow-y-auto translate-y-full transition-transform duration-300 ease-[cubic-bezier(.25,.8,.25,1)]">
+    <button id="aboutClose" class="absolute top-4 right-4 text-white text-3xl">×</button>
+    <h2 class="text-white text-2xl font-bold mb-4">How Does AI Help Humans in Solving Global Problems?</h2>
+    <p class="text-white/80 leading-relaxed text-base">
+      AI helps humanity by analyzing global-scale data, predicting risks, accelerating scientific breakthroughs,
+      and supporting solutions for climate change, healthcare inequality, disaster prevention,
+      and sustainable development.
+    </p>
+  </div>
+</div>
+<script>
+const aboutBtn = document.getElementById('aboutCardBtn');
+const aboutPanel = document.getElementById('aboutPanel');
+const aboutPanelInner = document.getElementById('aboutPanelInner');
+const aboutClose = document.getElementById('aboutClose');
+const aboutBackdrop = document.getElementById('aboutBackdrop');
+
+function openAbout() {
+  aboutPanel.classList.remove('hidden');
+  requestAnimationFrame(() => {
+    aboutPanelInner.classList.remove('translate-y-full');
+  });
+}
+
+function closeAbout() {
+  aboutPanelInner.classList.add('translate-y-full');
+  setTimeout(() => {
+    aboutPanel.classList.add('hidden');
+  }, 300);
+}
+
+aboutBtn?.addEventListener('click', openAbout);
+aboutClose?.addEventListener('click', closeAbout);
+aboutBackdrop?.addEventListener('click', closeAbout);
+</script>
+
+<script>
+const aboutWrapper = document.getElementById('aboutCardWrapper');
+const questionSection = document.querySelector('#question');
+const gameplaySection = document.querySelector('#gameplay');
+
+function showCard() {
+  aboutWrapper.classList.remove('opacity-0', 'translate-y-6');
+}
+
+function hideCard() {
+  aboutWrapper.classList.add('opacity-0', 'translate-y-6');
+}
+
+if (aboutWrapper) {
+
+  // SHOW on #question
+  if (questionSection) {
+    const showObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) showCard();
+      });
+    }, { threshold: 0.25 });
+    showObserver.observe(questionSection);
+  }
+
+  // HIDE on #gameplay
+  if (gameplaySection) {
+    const hideObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) hideCard();
+      });
+    }, { threshold: 0.25 });
+    hideObserver.observe(gameplaySection);
+  }
+}
+</script>
+
+
+<!-- ANIMATION -->
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease forwards;
+}
+</style>
+
+  <script>
+    /* TYPEWRITER ============================== */
+    const text = "Welcome to Project: ENSYN, Doctor.";
+    let index = 0;
+    const speed = 60;
+    const target = document.getElementById("typewriter");
+
+    function type() {
+      if (!target) return;
+      if (index < text.length) {
+        target.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, speed);
+      } else {
+        revealSubtext();
+      }
+    }
+    window.onload = type;
+
+    function revealSubtext() {
+      const sub = document.getElementById("subtext");
+      if (sub) sub.classList.add("fade-in-up");
+    }
+
+    /* SCROLL FADE-IN FOR CARD ================= */
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const aboutCard = document.getElementById("aboutCard");
+    if (aboutCard) observer.observe(aboutCard);
+  </script>
+
+<script>
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const navLinks = document.querySelectorAll('#mobileMenu a');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('-translate-y-full');
+      
+      // Animate hamburger into X
+      const [line1, line2, line3] = hamburger.children;
+      line1.classList.toggle('rotate-45');
+      line1.classList.toggle('translate-y-2');
+      line2.classList.toggle('opacity-0');
+      line3.classList.toggle('-rotate-45');
+      line3.classList.toggle('-translate-y-2');
+    });
+  }
+
+  // Close mobile menu when clicking a link
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('-translate-y-full');
+      // Reset hamburger
+      const [line1, line2, line3] = hamburger.children;
+      line1.classList.remove('rotate-45', 'translate-y-2');
+      line2.classList.remove('opacity-0');
+      line3.classList.remove('-rotate-45', '-translate-y-2');
+    });
+  });
+
+</script>
+
+<script>
+  // Lazy-load iframe AFTER page has painted and hero animation can run
+  window.addEventListener('load', () => {
+    // Give browser a short delay to finish hero animation / paints.
+    // Adjust 400ms if you need longer/shorter.
+    setTimeout(() => {
+      const f = document.getElementById('itchFrame');
+      if (f && f.dataset && f.dataset.src && !f.src) {
+        f.src = f.dataset.src;
+      }
+    }, 400);
+  });
+
+// Prevent the iframe from ever stealing focus
+const iframe = document.getElementById("itchFrame");
+if (iframe) {
+  iframe.setAttribute("tabindex", "-1");
+
+  // Also prevent scroll-jump when iframe finishes loading
+  iframe.addEventListener("load", () => {
+    window.scrollTo({ top: 0 });
+  });
+}
+</script>
+
+</body>
+</html>
